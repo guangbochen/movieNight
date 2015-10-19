@@ -1,0 +1,15 @@
+#home-wrapper {
+    padding: 20px 0;
+}
+
+.movie-img {
+    padding-left: 20px;
+}
+
+.card-title {
+    font-size: 1.4rem;
+}
+
+.card-text {
+    min-height: 120px;
+}

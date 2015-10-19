@@ -5,25 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>GC - Movie Night</title>
-    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/main.css" type="text/css">
 </head>
 <body>
-    <p>Hello World</p>
-    {% for item in movies %}
-    <li>
-        <p>{{item.movie_title}}</p>
-        <span>{{item.movie_duration}}</span>
-        <p>{{item.movie_trailer_youtube_url}}</p>
-        <p>{{item.movie_story_line}}</p>
-        <p>{{item.movie_post_image_url}}</p>
-        <p>{{item.movie_director}}</p>
-        <p>{{item.movie_release_date}}</p>
-        <p>{{movie_iMDB_rate}}</p>
-    </li>
-    {% endfor %}
+  <nav class="navbar navbar-light bg-faded">
+    <a class="navbar-brand" href="#">G.C | Movie Trailers</a>
+  </nav>
 
-    <!-- jQuery first, then Bootstrap JS. -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
+  <div class="container" id="home-wrapper">
+    <div class="row">
+      <h3>Movie Collection in 2015</h3>
+      {% for item in movies %}
+      <div class="col-sm-4 card">
+        <div class="card-block">
+          <h4 class="card-title">{{item.movie_title}}</h4>
+          <h6 class="card-subtitle text-muted">
+            {{item.movie_duration}}
+            <span class="release-year"> | {{item.movie_release_date}}</span>
+          </h6>
+        </div>
+        <img src="{{item.movie_post_image_url}}" alt="Card image" class="movie-img">
+        <div class="card-block">
+          <p class="card-text">{{item.movie_story_line}}</p>
+          <p>
+          Director: {{item.movie_director}}
+          <span>Rating: {{item.movie_iMDB_rate}}</span>
+          </p>
+          <a href="#" class="card-link" data-link="{{item.movie_trailer_youtube_url}}" data-name="{{item.movie_title}}">Watch Trailer</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+  <!-- movie trailer modal -->
+  <div class="modal fade" id="movie-trailer-modal">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          <!-- 16:9 aspect ratio -->
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" id="modal-movie-trailer" src="..."></iframe>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <!-- jQuery first, then Bootstrap JS. -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
+  <script type="text/javascript" src="/static/main.js"></script>
 </body>
 </html>
