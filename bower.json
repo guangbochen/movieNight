@@ -1,0 +1,22 @@
+{
+  "name": "movieNights",
+  "version": "0.0.0",
+  "authors": [
+    "Guangbo Chen <steven.guangbo.chen@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~4.0.0"
+  }
+}
