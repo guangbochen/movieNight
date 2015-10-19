@@ -9,6 +9,18 @@
 </head>
 <body>
     <p>Hello World</p>
+    {% for item in movies %}
+    <li>
+        <p>{{item.movie_title}}</p>
+        <span>{{item.movie_duration}}</span>
+        <p>{{item.movie_trailer_youtube_url}}</p>
+        <p>{{item.movie_story_line}}</p>
+        <p>{{item.movie_post_image_url}}</p>
+        <p>{{item.movie_director}}</p>
+        <p>{{item.movie_release_date}}</p>
+        <p>{{movie_iMDB_rate}}</p>
+    </li>
+    {% endfor %}
 
     <!-- jQuery first, then Bootstrap JS. -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

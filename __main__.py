@@ -35,8 +35,9 @@ class MovieNight(object):
 
     def render_tempalte(self, template_name, **context):
         t = self.jinja_env.get_template(template_name)
-        favorite_movie_list = MoviesController.get_favorite_movies
-        return Response(t.render(context), mimetype='text/html')
+        # init movies controller and call get favorite movies method to get list of movies
+        favorite_movie_list = MoviesController().get_favorite_movies()
+        return Response(t.render(context, movies=favorite_movie_list), mimetype='text/html')
 
 
 #init MovieNight instance
