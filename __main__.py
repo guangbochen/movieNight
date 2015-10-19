@@ -1,6 +1,6 @@
 """
-    main file to init project
-    this file is inspired by werkzeug.pocoo.org
+    This is the main file to init the movie trailer application
+    Note: this file is inspired by werkzeug.pocoo.org
 """
 import os
 import redis
@@ -11,6 +11,8 @@ from werkzeug.exceptions import HTTPException, NotFound
 from werkzeug.wsgi import SharedDataMiddleware
 from werkzeug.utils import redirect
 from jinja2 import Environment, FileSystemLoader
+from models.movie import Movie
+from controllers.movies_controller import MoviesController
 
 # define the Movie Night WSGI application
 class MovieNight(object):
@@ -35,6 +37,7 @@ class MovieNight(object):
 
     def render_tempalte(self, template_name, **context):
         t = self.jinja_env.get_template(template_name)
+        favorite_movie_list = MoviesController.get_favorite_movies
         return Response(t.render(context), mimetype='text/html')
 
 
