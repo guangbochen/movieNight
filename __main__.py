@@ -3,7 +3,6 @@
     Note: this file is inspired by werkzeug.pocoo.org
 """
 import os
-import redis
 from urllib.parse import urlparse
 from werkzeug.wrappers import Request, Response
 from werkzeug.routing import Map, Rule
@@ -17,8 +16,7 @@ from controllers.movies_controller import MoviesController
 # define the Movie Night WSGI application
 class MovieNight(object):
 
-    def __init__(self, config):
-        self.redis     = redis.Redis(config['redis_host'], config['redis_port'])
+    def __init__(self):
         template_path  = os.path.join(os.path.dirname(__file__), 'templates')
         self.jinja_env = Environment(loader=FileSystemLoader(template_path), autoescape = True)
 
@@ -41,13 +39,9 @@ class MovieNight(object):
         return Response(t.render(context), mimetype='text/html')
 
 
-#init MovieNight class and assign redis match
-def create_app(redis_host='localhost', redis_port=6379, with_static=True):
-    app = MovieNight({
-        'redis_host': redis_host,
-        'redis_port': redis_port
-    })
-
+#init MovieNight instance
+def create_app(with_static=True):
+    app = MovieNight()
     if with_static:
         app.wsgi_app = SharedDataMiddleware(app.wsgi_app, {
             'static': os.path.join(os.path.dirname(__file__), 'static')
